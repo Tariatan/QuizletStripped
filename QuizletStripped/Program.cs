@@ -19,7 +19,6 @@ public class Quizlet
     private readonly Timer delayTimer = new ();
 
     private readonly Player player = new ();
-    private readonly Random mRand = new ();
 
     private const int DelayIntervalMs = 1500;
     private const int BufferSize = 256;
@@ -121,10 +120,9 @@ public class Quizlet
     }
     private void QuizWord()
     {
-
         isWord = true;
 
-        currentPair = quiz[mRand.Next(quiz.Count)];
+        currentPair = quiz[Random.Shared.Next(quiz.Count)];
 
         Console.WriteLine($"{currentPair.Item1}");
 
