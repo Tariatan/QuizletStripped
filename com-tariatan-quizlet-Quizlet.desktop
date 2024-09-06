@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Quizlet
+GenericName=Quizlet
+Exec=gnome-terminal -- /home/shyshkiv/RiderProjects/QuizletStripped/QuizletStripped/bin/Release/net8.0/linux-x64/publish/Quizlet
+Icon=/home/shyshkiv/RiderProjects/QuizletStripped/Q.png
+Terminal=true
+Categories=Utility;
+StartupWMClass=com-tariatan-quizlet-Quizlet
