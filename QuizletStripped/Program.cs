@@ -124,7 +124,10 @@ public class Quizlet
 
         currentPair = quiz[Random.Shared.Next(quiz.Count)];
 
+        var color = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine($"{currentPair.Item1}");
+        Console.ForegroundColor = color;
 
         ReadoutWord();
     }
@@ -132,7 +135,10 @@ public class Quizlet
     {
         isWord = false;
 
+        var color = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"{currentPair.Item2}");
+        Console.ForegroundColor = color;
 
         ReadoutDescription();
     }
