@@ -6,7 +6,11 @@ using Timer = System.Timers.Timer;
 
 Console.WriteLine("Quiz started!");
 
-new Quizlet().StartQuiz();
+var q = new Quizlet();
+
+// q.Test("er ist dick", "/home/shyshkiv/TMP/output");
+
+q.StartQuiz();
 
 Console.ReadKey();
 
@@ -15,6 +19,8 @@ public class Quizlet
     private readonly List<string> files;
     private readonly List<Tuple<string, string>> quiz = new ();
     private Tuple<string, string> currentPair = null!;
+
+    private readonly Random rand = new ();
 
     private readonly Timer delayTimer = new ();
 
@@ -46,10 +52,22 @@ public class Quizlet
         delayTimer.Enabled = false;
         delayTimer.AutoReset = false;
 
-        player.PlaybackFinished += (_, _) =>
-        {
-            delayTimer.Enabled = true;
-        };
+        player.PlaybackFinished += OnPlaybackFinished;
+    }
+
+    private void OnPlaybackFinished(object? sender, EventArgs eventArgs)
+    {
+        delayTimer.Enabled = true;
+    }
+
+    public void Test(string text, string file)
+    {
+        player.PlaybackFinished -= OnPlaybackFinished;
+
+        this.modelPath = ModelPathDe;
+        this.configPath = ConfigPathDe;
+
+        Speak(text, file);
     }
 
     public void StartQuiz()
@@ -122,7 +140,7 @@ public class Quizlet
     {
         isWord = true;
 
-        currentPair = quiz[Random.Shared.Next(quiz.Count)];
+        currentPair = quiz[rand.Next(quiz.Count)];
 
         var color = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Blue;
